@@ -25,5 +25,12 @@
       "**/backend",
       "**/backend/**"
     ]
+  },
+  "dependencies": {
+    "@react-three/fiber": "^8.8.10",
+    "@types/three": "^0.144.0",
+    "popmotion": "^11.0.5",
+    "react-infinite-scroll-component": "^6.1.0",
+    "three": "^0.145.0"
   }
 }

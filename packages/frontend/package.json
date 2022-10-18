@@ -10,15 +10,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.2.3",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@rainbow-me/rainbowkit": "^0.5.0",
+    "alchemy-sdk": "^2.1.1",
     "ethers": "^5.6.9",
     "framer-motion": "^6.4.3",
     "next": "^12.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.6.0",
     "wagmi": "^0.6.4"
   },
   "devDependencies": {

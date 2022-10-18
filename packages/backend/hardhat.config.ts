@@ -71,12 +71,12 @@ const config: HardhatUserConfig = {
 
     // L2 TEST NETWORKS
 
-    // mumbai: {
-    //   chainId: 80001,
-    //   url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
-    //   url: `https://polygon-mumbai.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
-    //   accounts: [`${process.env.PRIVATE_KEY}`],
-    // },
+    mumbai: {
+      chainId: 80001,
+      url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
+      // url: `https://polygon-mumbai.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_ID}`,
+      accounts: [`${process.env.PRIVATE_KEY}`],
+    },
   },
   namedAccounts: {
     deployer: {
