@@ -1,6 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import Sidebar from '../Dashboard/Sidebar'
+import Sidebar from '../components/Sidebar'
 import { Box, Container } from '@chakra-ui/react'
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
@@ -15,7 +15,7 @@ const Explore: NextPage = () => {
   return isConnected ? (
     <>
     
-        <Sidebar children={undefined} />
+        <Sidebar> </Sidebar>
         <Box ml={{ base: 0, md: 60 }} p="4">
           <Container maxW="1260px">
             <ExploreProfiles />

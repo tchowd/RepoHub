@@ -28,7 +28,7 @@ import { signedTypeData, splitSignature } from "../../util/ethers.service";
 import styles from "../../styles/Profile.module.css";
 import doesFollowUser from "../../graphql/query/doesFollowUser";
 import {Box, Center, Container, Image, Text, VStack } from '@chakra-ui/react'
-import Sidebar from "../Dashboard/Sidebar";
+import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
 import Auth from "../Auth";
 
@@ -252,7 +252,7 @@ const Profile: NextPage = () => {
   return isConnected ? (
     <>
     
-        <Sidebar children={undefined} />
+        <Sidebar> </Sidebar>
         <Box ml={{ base: 0, md: 60 }} p="4">
           <Container maxW="1260px">
             <ProfilePage />

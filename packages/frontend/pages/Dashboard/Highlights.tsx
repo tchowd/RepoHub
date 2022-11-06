@@ -16,16 +16,16 @@ import {
 // import { ConnectButton, useAccount } from '@web3modal/react'
 // import UseAccount from '../Auth/WalletConnect/sections/UseAccount'
 import { Text } from '@chakra-ui/react';
-import { useAccount } from 'wagmi';
+import { useAccount, useEnsName } from 'wagmi';
 // import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 function Highlights() {
-  const { isConnected } = useAccount()
+  const { isConnected, address } = useAccount()
 
   return isConnected ? (
     <>
-      <Text as='b' fontSize='4xl'>
-        Good morning, Xian | 
+      <Text as='b' fontSize='3xl'>
+        Good morning | {address} 
       </Text>
       <HStack style={{ marginTop: '2rem' }}>
         <VStack>

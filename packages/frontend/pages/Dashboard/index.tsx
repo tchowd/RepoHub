@@ -1,6 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import Sidebar from './Sidebar'
+import Sidebar from '../components/Sidebar'
 import TableSection from './Table'
 import Highlights from './Highlights'
 import Projects from './Projects'
@@ -17,7 +17,7 @@ const Dashboard: NextPage = () => {
   return isConnected ? (
     <>
     
-        <Sidebar children={undefined} />
+        <Sidebar> </Sidebar>
         <Box ml={{ base: 0, md: 60 }} p="4">
           <Container maxW="1260px">
             <Highlights />
