@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import {
   dehydrate,
   QueryClient,
@@ -17,7 +17,7 @@ import {
 } from "@thirdweb-dev/react";
 import getProfile from "../../graphql/query/getProfile";
 import getPublications from "../../graphql/query/getPublications";
-import PublicationCard from "../../components/Publication/PublicationCard";
+import PublicationCard from "../components/Publication/PublicationCard";
 import Publication from "../../types/Publication";
 import useLensUser from "../../util/useLensUser";
 import login from "../../util/login";
@@ -27,11 +27,16 @@ import { LENS_PROTOCOL_PROFILES_ABI } from "../../const/abis";
 import { signedTypeData, splitSignature } from "../../util/ethers.service";
 import styles from "../../styles/Profile.module.css";
 import doesFollowUser from "../../graphql/query/doesFollowUser";
+import {Box, Center, Container, Image, Text, VStack } from '@chakra-ui/react'
+import Sidebar from "../Dashboard/Sidebar";
+import { useAccount } from "wagmi";
+import Auth from "../Auth";
+
 
 /**
  * Dynamic route to display a Lens profile and their publications given a handle
  */
-export default function ProfilePage() {
+function ProfilePage() {
   // Next.js Router: Load the user's handle from the URL
   const router = useRouter();
   const { handle } = router.query;
@@ -147,19 +152,38 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.profileOutlineContainer}>
-        <MediaRenderer
-          src={profile.picture.original.url || ""}
-          style={{
-            borderRadius: "50%",
-            width: "128px",
-            height: "128px",
-            objectFit: "cover",
-          }}
-        />
-        <h1 className={styles.profileName}>{profile?.name}</h1>
-        <p className={styles.profileHandle}>@{profile?.handle}</p>
+    <div >
+      <Box
+        position={'relative'}
+        height={'12rem'}
+        backgroundColor={'purple.100'}
+        overflow={'hidden'}
+        marginTop={'-5rem'}
+        _hover={{boxShadow: 'lg'}} />
+            <Center>
+                <Image
+                    borderRadius='full'
+                    boxSize='200px'
+                    src={profile.picture.original.url || ""}
+                    alt='Dan Abramov'
+                    marginTop={'-4rem'}
+                    marginRight={'2rem'}
+                    overflow={'none'}
+                    zIndex={'1'}
+                    /> 
+
+                    <VStack>
+                      <Text marginTop={'2rem'} marginRight={'28rem'} fontSize='5xl' as='b'> 
+                        {profile?.name}
+                      </Text>
+                      <Text marginTop={'2rem'} marginRight={'28rem'} fontSize='5sm' > 
+                        @{profile?.handle}
+                      </Text>
+                      <Text  marginLeft={'0rem'}> 
+                        {profile.bio}
+                      </Text>
+                    </VStack>
+          </Center>
 
         {doesFollow ? (
           <b className={styles.following}>Following</b>
@@ -176,13 +200,10 @@ export default function ProfilePage() {
           </Web3Button>
         )}
 
-        <p className={styles.profileBio}>{profile.bio}</p>
-      </div>
-
       {loadingPublications ? (
         <p>Loading publications...</p>
       ) : (
-        <div className={styles.publicationsContainer}>
+        <div>
           {publications?.map((publication: Publication) => (
             <PublicationCard publication={publication} key={publication.id} />
           ))}
@@ -221,3 +242,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
     fallback: "blocking",
   };
 };
+
+
+
+const Profile: NextPage = () => {
+
+  const { isConnected } = useAccount()
+
+  return isConnected ? (
+    <>
+    
+        <Sidebar children={undefined} />
+        <Box ml={{ base: 0, md: 60 }} p="4">
+          <Container maxW="1260px">
+            <ProfilePage />
+          </Container>
+        </Box>
+    </>
+  ) : (
+    <Auth />
+  )
+}
+
+export default Profile

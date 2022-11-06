@@ -10,9 +10,6 @@ import {
   Image,
   Link,
   Button,
-  Drawer,
-  DrawerContent,
-  Text,
   useDisclosure,
   BoxProps,
   FlexProps,
@@ -28,8 +25,6 @@ import {
   FiBell,
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
-import { ReactText } from 'react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 
 interface LinkItemProps {
@@ -39,7 +34,7 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome },
   { name: 'Dashboard', icon: FiTrendingUp },
-  { name: 'Invoice', icon: FiCompass },
+  { name: 'Explore', icon: FiCompass },
   { name: 'Profile', icon: FiStar },
   { name: 'Settings', icon: FiSettings },
 ];
@@ -55,36 +50,12 @@ export default function SidebarWithHeader({
   return (
     <>
     <Box>
-   
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
       />
-      {/* <Drawer
-        autoFocus={false}
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full" 
-        children={undefined}>
-        <DrawerContent> */}
-       
           <SidebarContent onClose={onClose} />
-        {/* </DrawerContent> */}
-      {/* </Drawer> */}
-
-      {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      {/* <Box ml={{ base: 0, md: 60 }} p="4"> */}
-        {/* {children}      */}
-        {/* <TableSection /> */}
-        {/* <Highlights /> */}
-        {/* <Projects /> */}
-      {/* </Box> */}
-      
-      {/* <ConnectButton /> */}
     </Box>
   
     </>
@@ -98,7 +69,6 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <>
-
     <div style={{backgroundColor: 'linear-gradient(180deg, rgba(189,0,224,0.5256303204875701) 28%, rgba(0,7,255,0.4640056706276261) 100%); '}}>
     <Box
       transition="3s ease"
@@ -112,12 +82,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
 
       <Image
-                borderRadius="lg"
-                src='/static/bloom.png'
-                alt="some good alt text"
-                objectFit="contain"
-                width={'10rem'}
-              /> 
+        borderRadius="lg"
+        src='/static/bloom.png'
+        alt="some good alt text"
+        objectFit="contain"
+        width={'10rem'}
+      /> 
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
 
@@ -136,10 +106,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
 interface NavItemProps extends FlexProps {
   // name: LinkItemProps
-  icon: IconType;
-  children: ReactText;
+  // icon: IconType;
 }
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ children, ...rest }: NavItemProps) => {
   return (
     <>
     <Link href={children} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
@@ -158,12 +127,8 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
         
         {children}
 
-       
       </Flex>
     </Link>
-
-
-
     </>
   );
 };
@@ -181,19 +146,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      // bg={useColorModeValue('white', 'gray.900')}
-      // borderBottomWidth="1px"
-      // borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
       justifyContent={{ base: 'space-between', md: 'flex-end' }}
       {...rest}>
 
-      {/* <IconButton
-        display={{ base: 'flex', md: 'none' }}
-        onClick={onOpen}
-        variant="outline"
-        aria-label="open menu"
-        icon={<FiMenu />}
-      /> */}
     <HStack style={{marginRight: '2rem', overflow: "visible", zIndex: '1'}}>
       <Button onClick={toggleColorMode}>
           {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
@@ -205,10 +160,8 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           aria-label="open menu"
           icon={<FiBell />}
         />
-      
       </HStack>
       </HStack>
-      {/* <ConnectButton /> */}
     </Flex>
     </div>
   );

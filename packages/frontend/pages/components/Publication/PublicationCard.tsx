@@ -12,6 +12,7 @@ export default function PublicationCard({ publication }: Props) {
       <div className={styles.textContainer}>
         <h2 className={styles.title}>{publication.metadata.name}</h2>
         <p className={styles.content}>{publication.metadata.content}</p>
+
       </div>
       {publication.metadata.image && (
         <MediaRenderer

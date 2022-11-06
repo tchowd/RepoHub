@@ -21,7 +21,7 @@ export default function ExploreProfiles() {
           ) : (
             data?.map((profile) => (
               <a
-                href={`/profile/${profile.handle}`}
+                href={`/Profile/${profile.handle}`}
                 className={styles.profileContainer}
                 key={profile.id}
               >
