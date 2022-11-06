@@ -2,10 +2,13 @@ import * as React from 'react';
 import type { AppProps } from 'next/app';
 import NextHead from 'next/head';
 import '../styles/globals.css';
-
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import { ChakraProvider } from '@chakra-ui/react';
-
-// Imports
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { chain, createClient, WagmiConfig, configureChains } from 'wagmi';
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
@@ -24,7 +27,7 @@ import { useIsMounted } from '../hooks';
 // const infuraId = process.env.NEXT_PUBLIC_INFURA_ID as string;
 
 const { chains, provider } = configureChains(
-  [chain.goerli], 
+  [chain.polygonMumbai], 
   [
     jsonRpcProvider({
       rpc: () => {
@@ -36,6 +39,10 @@ const { chains, provider } = configureChains(
     publicProvider(),
   ]
 );
+
+const desiredChainId = ChainId.Polygon;
+const queryClient = new QueryClient();
+
 
 const hardhatChain: Chain = {
   id: 31337,
@@ -74,6 +81,9 @@ const App = ({ Component, pageProps }: AppProps) => {
   if (!isMounted) return null;
   return (
     <WagmiConfig client={wagmiClient}>
+      <ThirdwebProvider desiredChainId={desiredChainId}>
+      {/* For React Query functionality */}
+      <QueryClientProvider client={queryClient}>
       <RainbowKitProvider coolMode chains={chains}>
         <NextHead>
           <title>create-web3</title>
@@ -82,6 +92,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Component {...pageProps} />
         </ChakraProvider>
       </RainbowKitProvider>
+      </QueryClientProvider>
+      </ThirdwebProvider>
     </WagmiConfig>
   );
 };
