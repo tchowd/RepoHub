@@ -19,7 +19,7 @@ export default function Home() {
 
       <Container>
         <Center>
-          <Link href="/auth"> 
+          <Link href="/Auth"> 
             <Button marginTop="10rem" >
               Sign In
             </Button>

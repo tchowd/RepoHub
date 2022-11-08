@@ -30,7 +30,7 @@ import doesFollowUser from "../../graphql/query/doesFollowUser";
 import {Box, Center, Container, Image, Text, VStack } from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
-import Auth from "../auth";
+import Auth from "../Auth";
 
 
 /**
