@@ -30,7 +30,7 @@ import doesFollowUser from "../../graphql/query/doesFollowUser";
 import {Box, Center, Container, Image, Text, VStack } from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
-import Auth from "../Auth";
+import Auth from "../auth";
 
 
 /**
@@ -247,9 +247,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const Profile: NextPage = () => {
 
-  const { isConnected } = useAccount()
+  const { isSignedIn } = useLensUser();
 
-  return isConnected ? (
+  return isSignedIn ? (
     <>
     
         <Sidebar> </Sidebar>

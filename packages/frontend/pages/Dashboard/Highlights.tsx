@@ -22,7 +22,7 @@ import { useAccount, useEnsName } from 'wagmi';
 function Highlights() {
   const { isConnected, address } = useAccount()
 
-  return isConnected ? (
+  return (
     <>
       <Text as='b' fontSize='3xl'>
         Good morning | {address} 
@@ -109,9 +109,7 @@ function Highlights() {
 
       </HStack>
       </>
-  ) : (
-    <ConnectWallet />
-  )
+  ) 
 }
 
 export default Highlights

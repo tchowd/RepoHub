@@ -5,14 +5,15 @@ import { Box, Container } from '@chakra-ui/react'
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { ConnectWallet } from "@thirdweb-dev/react";
-import Auth from '../Auth'
+import Auth from '../auth'
 import ExploreProfiles from './ExploreProfiles'
+import useLensUser from '@/util/useLensUser'
 
 const Explore: NextPage = () => {
 
-  const { isConnected } = useAccount()
+  const { isSignedIn } = useLensUser();
 
-  return isConnected ? (
+  return isSignedIn ? (
     <>
     
         <Sidebar> </Sidebar>

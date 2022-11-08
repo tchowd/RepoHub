@@ -1,20 +1,20 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import Sidebar from '../components/Sidebar'
-import TableSection from './Table'
 import Highlights from './Highlights'
 import Projects from './Projects'
 import { Box, Container } from '@chakra-ui/react'
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { ConnectWallet } from "@thirdweb-dev/react";
-import Auth from '../Auth'
+import Auth from '../auth'
+import useLensUser from '@/util/useLensUser'
 
 const Dashboard: NextPage = () => {
 
-  const { isConnected } = useAccount()
+  const { isSignedIn } = useLensUser();
 
-  return isConnected ? (
+  return (isSignedIn ) ? (
     <>
     
         <Sidebar> </Sidebar>

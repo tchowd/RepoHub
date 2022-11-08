@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   Stack,
   useColorMode,
-  Image,
+  Text,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -21,18 +21,20 @@ export default function Navbar() {
     <>
       <Box bg={useColorModeValue('purple.100', 'purple.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <Image
+          {/* <Image
             borderRadius="lg"
-            src='/static/bloom.png'
-            alt="some good alt text"
+            src='/images/claim.jpg'
+            alt="claim Logo"
             objectFit="contain"
             width={'10rem'}
-          />
+          /> */}
+          <Text> Claim </Text>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
               {/* <WalletConnect /> */}
               {/* <ConnectButton /> */}
               {/* <Auth /> */}
+              
               <Button onClick={toggleColorMode} zIndex={'1'}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               </Button>

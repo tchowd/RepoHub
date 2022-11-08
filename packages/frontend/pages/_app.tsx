@@ -21,18 +21,26 @@ import {
 } from '@rainbow-me/rainbowkit';
 
 import { useIsMounted } from '../hooks';
+import { ethers } from "ethers";
+import { Web3ReactProvider } from "@web3-react/core";
 
 // Get environment variables
 // const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID as string;
 // const infuraId = process.env.NEXT_PUBLIC_INFURA_ID as string;
 
+
+function getLibrary(provider: any) {
+  const gottenProvider = new ethers.providers.Web3Provider(provider, "any");
+  return gottenProvider;
+}
+
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai], 
+  [chain.polygon], 
   [
     jsonRpcProvider({
       rpc: () => {
         return {
-          http: 'https://rpc.ankr.com/polygon_mumbai', 
+          http: 'https://rpc.ankr.com/polygon', 
         };
       },
     }),
@@ -80,6 +88,7 @@ const App = ({ Component, pageProps }: AppProps) => {
 
   if (!isMounted) return null;
   return (
+    <Web3ReactProvider getLibrary={getLibrary}>
     <WagmiConfig client={wagmiClient}>
       <ThirdwebProvider desiredChainId={desiredChainId}>
       {/* For React Query functionality */}
@@ -95,6 +104,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       </QueryClientProvider>
       </ThirdwebProvider>
     </WagmiConfig>
+    </Web3ReactProvider>
   );
 };
 
