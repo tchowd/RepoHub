@@ -27,7 +27,7 @@ import { LENS_PROTOCOL_PROFILES_ABI } from "../../const/abis";
 import { signedTypeData, splitSignature } from "../../util/ethers.service";
 import styles from "../../styles/Profile.module.css";
 import doesFollowUser from "../../graphql/query/doesFollowUser";
-import {Box, Center, Container, Image, Text, VStack } from '@chakra-ui/react'
+import {Box, Center, Container, HStack, Image, Text, VStack } from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
 import Auth from "../Auth";
@@ -128,16 +128,20 @@ function ProfilePage() {
   }
 
   return (
-    <div >
+    <div>
+      <HStack>
+        <VStack>
       <Box
         position={'relative'}
-        height={'12rem'}
+        height={'20rem'}
         backgroundColor={'purple.100'}
         overflow={'hidden'}
         zIndex={-1}
-        marginLeft={'-1rem'}
-        marginRight={'-1rem'}
-        />
+        border={'1rem solid white'}
+        marginTop={'5rem'}
+        // marginLeft={'-1rem'}
+        // marginRight={'-1rem'}
+        >
             <Center>
                 <MediaRenderer
                     style={{
@@ -148,9 +152,6 @@ function ProfilePage() {
                       marginBottom: '-4rem',
                       overflow:'none',
                       zIndex: '1',
-                      // border:'4px solid white',
-                      marginTop: '-10rem',
-                      marginRight: '2rem',
                       border: '0.5rem solid white'
                     }}
                     src={profile.picture.original.url || ""}
@@ -184,7 +185,48 @@ function ProfilePage() {
             Follow
           </Web3Button>
         )}
-      
+        </Box>
+          <Box 
+            position={'relative'}
+            // height={'20rem'}
+            backgroundColor={'purple.100'}
+            overflow={'hidden'}
+            zIndex={-1}
+            border={'1rem solid white'}
+            marginTop={'5rem'}>
+            About {profile.name}
+            <Text> {profile.bio}</Text>
+          </Box>
+          </VStack>
+          <VStack>
+          <Box 
+            position={'relative'}
+            // height={'20rem'}
+            backgroundColor={'purple.100'}
+            overflow={'hidden'}
+            zIndex={-1}
+            border={'1rem solid white'}
+            marginTop={'5rem'}>
+            About {profile.name}
+            <Text> {profile.bio}</Text>
+          </Box>
+
+          <Box 
+            position={'relative'}
+            // height={'20rem'}
+            backgroundColor={'purple.100'}
+            overflow={'hidden'}
+            zIndex={-1}
+            border={'1rem solid white'}
+            marginTop={'5rem'}>
+            About {profile.name}
+            <Text> {profile.bio}</Text>
+          </Box>
+          </VStack>
+          </HStack>
+
+
+        
       {loadingPublications ? (
         <p>Loading publications...</p>
       ) : (
