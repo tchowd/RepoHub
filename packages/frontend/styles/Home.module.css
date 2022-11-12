@@ -34,18 +34,22 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  color: black;
+  max-width: fit-content;
 }
 
 .profileContainer {
   border-radius: 10px;
-  border: 1px solid grey;
-  padding: 16px;
-  margin: 16px;
+  background-color: white;
+  padding: 26px;
+  margin: 15px;
+  margin-top: 1rem;
+  height: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 240px;
-  overflow-x: auto;
+  height: 300px;
   text-decoration: none;
   color: inherit;
 }
@@ -54,7 +58,7 @@
 .profileContainer:hover {
   background-color: rgba(0, 0, 0, 0.25);
   color: white;
-
+  border: 3px solid white;
   /* animate */
   transition: 0.3s;
 }

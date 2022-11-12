@@ -33,73 +33,52 @@ import { useAccount } from "wagmi";
 import Auth from "../Auth";
 
 
-/**
- * Dynamic route to display a Lens profile and their publications given a handle
- */
+
 function ProfilePage() {
-  // Next.js Router: Load the user's handle from the URL
   const router = useRouter();
   const { handle } = router.query;
 
-  // Get the SDK and signer for us to use for interacting with the lens smart contract
   const sdk = useSDK();
   const signer = useSigner();
 
-  // React Query
   const queryClient = useQueryClient();
 
-  // Get the currently connected wallet address
   const address = useAddress();
 
-  // See if we need to sign the user in before they try follow a user
   const { isSignedIn } = useLensUser();
 
-  // Load the same queries we did on the server-side.
-  // Will load data instantly since it's already in the cache.
   const { data: profile, isLoading: loadingProfile } = useQuery(
     ["profile"],
     () => getProfile(handle as string)
   );
 
-  // When the profile is loaded, load the publications for that profile
   const { data: publications, isLoading: loadingPublications } = useQuery(
     ["publications"],
     () => getPublications(profile?.id as string, 10),
     {
-      // Only run this query if the profile is loaded
       enabled: !!profile,
     }
   );
 
-  // Check to see if the connected wallet address follows this user
   const { data: doesFollow } = useQuery(
     ["follows", address, profile?.id],
     () => doesFollowUser(address as string, profile?.id as string),
     {
-      // Only run this query if the profile is loaded
       enabled: !!profile && !!address,
     }
   );
 
-  // Connect to the Lens Hub smart contract using it's ABI and address
   const { contract: lensHubContract } = useContract(
     LENS_HUB_CONTRACT_ADDRESS,
     LENS_PROTOCOL_PROFILES_ABI
   );
 
   const { mutateAsync: follow } = useMutation(() => followThisUser(), {
-    // When the mutation is successful, invalidate the doesFollow query so it will re-run
     onSuccess: () => {
       queryClient.setQueryData(["follows", address, profile?.id], true);
     },
   });
 
-  // Follow the user when the follow button is clicked
-  // This function does the following:
-  // 1. Runs the followUser GraphQL Mutation to generate a typedData object
-  // 2. Signs the typedData object with the user's wallet
-  // 3. Sends the signature to the smart contract to follow the user,
-  // by calling the "followWithSig" function on the LensHub contract
   async function followThisUser() {
     if (!isSignedIn) {
       if (address && sdk) await login(address, sdk);
@@ -107,11 +86,9 @@ function ProfilePage() {
 
     if (!profile || !signer) return;
 
-    // 1. Runs the followUser GraphQL Mutation to generate a typedData object
     const result = await followUser(profile.id);
     const typedData = result.typedData;
 
-    // 2. Signs the typedData object with the user's wallet
     const signature = await signedTypeData(
       signer,
       typedData.domain,
@@ -119,7 +96,6 @@ function ProfilePage() {
       typedData.value
     );
 
-    // 3. Sends the signature to the smart contract to follow the user,
     const { v, r, s } = splitSignature(signature);
 
     try {
@@ -158,18 +134,27 @@ function ProfilePage() {
         height={'12rem'}
         backgroundColor={'purple.100'}
         overflow={'hidden'}
-        marginTop={'-5rem'}
-        _hover={{boxShadow: 'lg'}} />
+        zIndex={-1}
+        marginLeft={'-1rem'}
+        marginRight={'-1rem'}
+        />
             <Center>
-                <Image
-                    borderRadius='full'
-                    boxSize='200px'
+                <MediaRenderer
+                    style={{
+                      borderRadius: "50%",
+                      width: "250px",
+                      height: "250px",
+                      objectFit: "cover",
+                      marginBottom: '-4rem',
+                      overflow:'none',
+                      zIndex: '1',
+                      // border:'4px solid white',
+                      marginTop: '-10rem',
+                      marginRight: '2rem',
+                      border: '0.5rem solid white'
+                    }}
                     src={profile.picture.original.url || ""}
                     alt='Dan Abramov'
-                    marginTop={'-4rem'}
-                    marginRight={'2rem'}
-                    overflow={'none'}
-                    zIndex={'1'}
                     /> 
 
                     <VStack>
@@ -179,9 +164,9 @@ function ProfilePage() {
                       <Text marginTop={'2rem'} marginRight={'28rem'} fontSize='5sm' > 
                         @{profile?.handle}
                       </Text>
-                      <Text  marginLeft={'0rem'}> 
+                      {/* <Text  marginLeft={'0rem'}> 
                         {profile.bio}
-                      </Text>
+                      </Text> */}
                     </VStack>
           </Center>
 
@@ -199,7 +184,7 @@ function ProfilePage() {
             Follow
           </Web3Button>
         )}
-
+      
       {loadingPublications ? (
         <p>Loading publications...</p>
       ) : (
@@ -252,11 +237,12 @@ const Profile: NextPage = () => {
   return isSignedIn ? (
     <>
     
-        <Sidebar> </Sidebar>
-        <Box ml={{ base: 0, md: 60 }} p="4">
-          <Container maxW="1260px">
+        <Sidebar />
+        <Box ml={{ base: 10, md: 60 }}>
+          <VStack>
             <ProfilePage />
-          </Container>
+
+          </VStack>
         </Box>
     </>
   ) : (
