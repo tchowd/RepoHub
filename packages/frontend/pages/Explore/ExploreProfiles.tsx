@@ -129,7 +129,7 @@ export default function ExploreProfiles() {
             data?.map((profile) => (
               <div className={styles.profileContainer}>
               <a
-                href={`/Profile/${profile.handle}`}
+                href={`/profile/${profile.handle}`}
                 key={profile.id}
               >
                 <VStack>

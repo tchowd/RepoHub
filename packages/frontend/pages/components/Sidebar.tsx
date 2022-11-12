@@ -261,9 +261,9 @@ const Sidebar = () => {
 
     const Menus = [
         { title: 'Dashboard', path: '/dashboard', src: <AiFillPieChart /> },
-        { title: 'Course', path: '/explore', src: <SiFuturelearn /> },
+        { title: 'Explore', path: '/explore', src: <SiFuturelearn /> },
         { title: 'Profile', path: '/profile', src: <CgProfile /> },
-        { title: 'Signin', path: '/login', src: <SiOpenaccess />, gap: 'true' },
+        { title: 'Settings', path: '/Settings', src: <SiOpenaccess />, gap: 'true' },
     ]
 
     return (
@@ -284,7 +284,7 @@ const Sidebar = () => {
                         {/* <img src={Logo} alt='' className='pl-2' /> */}
                         {open && (
                             <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
-                                Goal Quest
+                                Claim
                             </span>
                         )}
                     </div>

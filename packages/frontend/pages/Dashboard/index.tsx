@@ -17,7 +17,7 @@ const Dashboard: NextPage = () => {
   return (isSignedIn ) ? (
     <>
     
-        <Sidebar> </Sidebar>
+        <Sidebar />
         <Box ml={{ base: 0, md: 60 }} p="4">
           <Container maxW="1260px">
             <Highlights />

@@ -27,7 +27,7 @@ import { LENS_PROTOCOL_PROFILES_ABI } from "../../const/abis";
 import { signedTypeData, splitSignature } from "../../util/ethers.service";
 import styles from "../../styles/Profile.module.css";
 import doesFollowUser from "../../graphql/query/doesFollowUser";
-import {Box, Center, Container, HStack, Image, Text, VStack } from '@chakra-ui/react'
+import {Box, Button, Center, Container, Flex, HStack, Image, Spacer, Text, VStack } from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
 import Auth from "../Auth";
@@ -129,113 +129,233 @@ function ProfilePage() {
 
   return (
     <div>
-      <HStack>
+      <HStack marginLeft={'6rem'} marginTop={'-35rem'}>
         <VStack>
-      <Box
-        position={'relative'}
-        height={'20rem'}
-        backgroundColor={'purple.100'}
-        overflow={'hidden'}
-        zIndex={-1}
-        border={'1rem solid white'}
-        marginTop={'5rem'}
-        // marginLeft={'-1rem'}
-        // marginRight={'-1rem'}
+        <Container maxW={'6xl'}>
+      <div
+        style={{
+          width: '60rem',
+          position: 'relative',
+          height: '22rem',
+          backgroundColor: 'purple',
+          overflow: '-1',
+          border:'0.4rem solid red',
+          zIndex: '-1',
+          borderRadius: '1rem'
+        }}
         >
-            <Center>
+          
+          
+           <Box
+                position={'relative'}
+                height={'10rem'}
+                backgroundColor={'red.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                borderRadius={'0.5rem'}
+                />
                 <MediaRenderer
                     style={{
                       borderRadius: "50%",
-                      width: "250px",
-                      height: "250px",
-                      objectFit: "cover",
+                      width: "170px",
+                      height: "170px",
+                      marginTop: '-5rem',
+                      marginLeft:'3rem',
                       marginBottom: '-4rem',
                       overflow:'none',
                       zIndex: '1',
-                      border: '0.5rem solid white'
+                      border: '0.4rem solid white'
                     }}
                     src={profile.picture.original.url || ""}
                     alt='Dan Abramov'
                     /> 
+                <div style={{ marginTop: '-6rem'}}>
+                    <VStack >
+                      <Flex >
+                      <Text 
+                            // marginRight={'10rem'}
 
-                    <VStack>
-                      <Text marginTop={'2rem'} marginRight={'28rem'} fontSize='5xl' as='b'> 
+                            marginLeft={'14rem'}
+                            fontSize='5xl' 
+                            as='b'
+                            > 
                         {profile?.name}
+                        
                       </Text>
-                      <Text marginTop={'2rem'} marginRight={'28rem'} fontSize='5sm' > 
-                        @{profile?.handle}
-                      </Text>
-                      {/* <Text  marginLeft={'0rem'}> 
-                        {profile.bio}
-                      </Text> */}
-                    </VStack>
-          </Center>
-
-        {doesFollow ? (
-          <b className={styles.following}>Following</b>
-        ) : (
-          <Web3Button
-            contractAddress={LENS_HUB_CONTRACT_ADDRESS}
-            contractAbi={LENS_PROTOCOL_PROFILES_ABI}
-            colorMode="dark"
-            accentColor="#f213a4"
-            action={() => follow()}
-            className={styles.followButton}
-          >
-            Follow
-          </Web3Button>
-        )}
-        </Box>
-          <Box 
-            position={'relative'}
-            // height={'20rem'}
-            backgroundColor={'purple.100'}
-            overflow={'hidden'}
-            zIndex={-1}
-            border={'1rem solid white'}
-            marginTop={'5rem'}>
-            About {profile.name}
-            <Text> {profile.bio}</Text>
-          </Box>
-          </VStack>
-          <VStack>
-          <Box 
-            position={'relative'}
-            // height={'20rem'}
-            backgroundColor={'purple.100'}
-            overflow={'hidden'}
-            zIndex={-1}
-            border={'1rem solid white'}
-            marginTop={'5rem'}>
-            About {profile.name}
-            <Text> {profile.bio}</Text>
-          </Box>
-
-          <Box 
-            position={'relative'}
-            // height={'20rem'}
-            backgroundColor={'purple.100'}
-            overflow={'hidden'}
-            zIndex={-1}
-            border={'1rem solid white'}
-            marginTop={'5rem'}>
-            About {profile.name}
-            <Text> {profile.bio}</Text>
-          </Box>
-          </VStack>
-          </HStack>
-
-
+                      <Spacer/>
+                      <HStack 
+                            marginLeft={'16rem'}>
+                      <Button 
+                            colorScheme='blue' 
+                            zIndex={1}
+                            height={'1.8rem'}>
+                            
+                        Send Message
+                      </Button>
+                      {doesFollow ? (
+                          <b className={styles.following}>Following</b>
+                        ) : (
+                          // <Web3Button
+                          //   contractAddress={LENS_HUB_CONTRACT_ADDRESS}
+                          //   contractAbi={LENS_PROTOCOL_PROFILES_ABI}
+                          //   colorMode="dark"
+                          //   accentColor="#f213a4"
+                          //   action={() => follow()}
+                          //   className={styles.followButton}
+                          // >
+                          //   Follow
+                          // </Web3Button>
+                          <Button marginRight={'0rem'} 
+                                  colorScheme='blue'
+                                  width={'6rem'}
+                                  height={'1.8rem'}>
+                            Follow
+                          </Button>
+                        )}
         
+                      </HStack>
+                      </Flex>
+                      <Text marginLeft={'20rem'} fontSize='5sm' > 
+                        @{profile?.handle}sdfsdf     
+                      </Text>
+                    </VStack>
+                  </div>
+        </div>
+                
+        </Container>
+          <Box 
+            position={'relative'}
+            // height={'20rem'}
+            width={'60rem'}
+            borderRadius={'1rem'}
+            backgroundColor={'purple.100'}
+            overflow={'hidden'}
+            zIndex={-1}
+            border={'0.5rem solid white'}
+            // marginTop={'5rem'}
+            padding={'1rem'}
+          >
+            <Text fontSize={'2xl'}> About {profile.name}</Text>
+            <Text> {profile.bio}</Text>
+          </Box>
+          <HStack>
+              
+              <Box 
+                position={'relative'}
+                width={'18rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'purple.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                border={'0.4rem solid white'}
+                // marginTop={'5rem'}
+                padding={'0.5rem'}
+                >
+                <Text> About {profile.name}</Text>
+                <Text> {profile.bio}</Text>
+              </Box>
+              <Box 
+                position={'relative'}
+                width={'18rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'purple.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                border={'0.4rem solid white'}
+                // marginTop={'5rem'}
+                padding={'0.5rem'}
+                >
+                <Text> About {profile.name}</Text>
+                <Text> {profile.bio}</Text>
+              </Box>
+              <Box 
+                position={'relative'}
+                width={'18rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'purple.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                border={'0.4rem solid white'}
+                // marginTop={'5rem'}
+                padding={'0.5rem'}
+                >
+                <Text> About {profile.name}</Text>
+                <Text> {profile.bio}</Text>
+              </Box>
+
+              
+            </HStack>
+          </VStack>
+            <VStack className='overflowTest'>
+                {loadingPublications ? (
+                  <p>Loading publications...</p>
+                ) : (
+                  <div className='overflowTest' >
+                    {publications?.map((publication: Publication) => (
+                      <PublicationCard publication={publication} key={publication.id} />
+                    ))}
+                  </div>
+                )}
+              {/* <Box 
+                position={'relative'}
+                height={'5rem'}
+                width={'18rem'}
+                backgroundColor={'purple.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                borderRadius={'1rem'}
+                border={'0.4rem solid white'}
+                marginTop={'5rem'}
+                padding={'0.5rem'}
+                >
+                <Text> About {profile.name}</Text>
+                <Text> {profile.bio}</Text>
+              </Box>
+
+              <Box 
+                position={'relative'}
+                width={'18rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'purple.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                border={'0.4rem solid white'}
+                marginTop={'5rem'}
+                padding={'0.5rem'}
+                >
+                About {profile.name}
+                <Text> {profile.bio}</Text>
+              </Box>
+
+              <Box 
+                position={'relative'}
+                height={'18rem'}
+                width={'18rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'purple.100'}
+                overflow={'hidden'}
+                zIndex={-1}
+                border={'0.4rem solid white'}
+                marginTop={'5rem'}
+                padding={'0.5rem'}
+                >
+                About {profile.name}
+                <Text> {profile.bio}</Text>
+              </Box> */}
+
+              
+            </VStack>
+          </HStack>
+{/* 
       {loadingPublications ? (
         <p>Loading publications...</p>
       ) : (
-        <div>
+        <div className='overscroll-auto' >
           {publications?.map((publication: Publication) => (
             <PublicationCard publication={publication} key={publication.id} />
           ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 }
@@ -249,7 +369,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // we use the useQuery it is already available in the cache
   await queryClient.prefetchQuery(["profile"], () =>
     getProfile(handle as string)
-  );
+  )
 
   // Learn more here: https://tanstack.com/query/v4/docs/guides/ssr#using-hydration
   return {
@@ -280,11 +400,14 @@ const Profile: NextPage = () => {
     <>
     
         <Sidebar />
-        <Box ml={{ base: 10, md: 60 }}>
+        <Box ml={{ base: 0, md: 70 }} p="4" overflow='scroll'>
+          <div className='overscroll-contain' >
+        <Container  >
           <VStack>
             <ProfilePage />
-
           </VStack>
+        </Container>
+        </div>
         </Box>
     </>
   ) : (
