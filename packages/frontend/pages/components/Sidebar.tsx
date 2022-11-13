@@ -270,22 +270,22 @@ const Sidebar = () => {
         <>
             <Box zIndex={'1'}
                 className={`${
-                    open ? 'w-60' : 'w-fit'
+                    open ? 'w-50' : 'w-fit'
                 } hidden sm:block absolute h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
             >
-                <BsArrowLeftCircle
+                <BsArrowLeftCircle style={{zIndex: '1'}}
                     className={`${
                         !open && 'rotate-180'
-                    } absolute text-3xl bg-white fill-slate-800  rounded-full cursor-pointer top-9 -right-4 dark:fill-gray-400 dark:bg-gray-800`}
+                    } absolute text-3xl  bg-white fill-slate-800  rounded-full cursor-pointer top-9 -right-4 dark:fill-gray-400 dark:bg-gray-800`}
                     onClick={() => setOpen(!open)}
                 />
                 <Link href='/'>
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
                         {/* <img src={Logo} alt='' className='pl-2' /> */}
                         {open && (
-                            <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
+                            <Box marginTop={'1rem'} className='text-xl font-medium whitespace-nowrap dark:text-white'>
                                 Claim
-                            </span>
+                            </Box>
                         )}
                     </div>
                 </Link>
@@ -297,7 +297,7 @@ const Sidebar = () => {
                                 className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700
                         `}
                             >
-                                <span className='text-2xl'>{menu.src}</span>
+                                <Box margin={'0.5rem'} className='text-2xl'>{menu.src}</Box>
                                 <span
                                     className={`${
                                         !open && 'hidden'

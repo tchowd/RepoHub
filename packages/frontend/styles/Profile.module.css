@@ -47,11 +47,9 @@
 .followButton {
   background-color: var(--tw-color1);
   border-radius: 8px;
-  width: 2rem;
   color: blue;
   font-weight: 600;
   font-size: 1rem;
-  /* padding: 8px 16px; */
   z-index: 1;
   border: none;
 }
@@ -61,7 +59,6 @@
   padding: 0px;
   margin: 0px;
   z-index: 1;
-
 }
 
 .followButton:hover {

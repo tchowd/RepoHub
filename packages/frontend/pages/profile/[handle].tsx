@@ -143,7 +143,7 @@ function ProfilePage() {
           backgroundColor: 'white',
           overflow: '-1',
           border:'0.4rem solid',
-          zIndex: '-1',
+          // zIndex: '-1',
           borderRadius: '1rem'
         }}
         > 
@@ -152,37 +152,22 @@ function ProfilePage() {
                 height={'10rem'}
                 backgroundColor={'red.100'}
                 overflow={'hidden'}
-                zIndex={-1}
+                zIndex={1}
                 borderRadius={'0.5rem'}
                 />
-                {/* <MediaRenderer
-                    style={{
-                      borderRadius: "50%",
-                      width: "150px",
-                      height: "150px",
-                      marginTop: '-5rem',
-                      marginLeft:'3rem',
-                      marginBottom: '-4rem',
-                      overflow:'none',
-                      zIndex: '1',
-                      border: '0.4rem solid white'
-                    }}
-                    src={profile.picture.original.url || ""}
-                    alt='Dan Abramov'
-                    />  */}
                 <div style={{ marginTop: '-6rem'}}>
                     <VStack >
                       <Flex >
                       <MediaRenderer
                           style={{
                             borderRadius: "50%",
-                            width: "150px",
-                            height: "150px",
+                            width: "180px",
+                            height: "180px",
                             // marginTop: '-5rem',
                             // marginLeft:'rem',
                             marginBottom: '-4rem',
                             overflow:'none',
-                            // zIndex: '1',
+                            zIndex: '1',
                             border: '0.4rem solid white'
                           }}
                           src={profile.picture.original.url || ""}
@@ -190,16 +175,10 @@ function ProfilePage() {
                           /> 
                       <Spacer/>
                       <HStack 
-                            marginLeft={'20rem'}
-                            marginTop={'2rem'}
-                            marginRight={''}>
-                      {/* <Button 
-                            colorScheme='blue' 
-                            zIndex={1}
-                            height={'1.8rem'}>
-                            
-                        Send Message
-                      </Button> */}
+                            marginLeft={'17rem'}
+                            marginTop={'0.3rem'}
+                            marginRight={''}
+                            zIndex={1}>
                       {doesFollow ? (
                           <b className={styles.following}>Following</b>
                         ) : (
@@ -213,27 +192,41 @@ function ProfilePage() {
                           >
                             Follow
                           </Web3Button>
-                          // <Button marginRight={'0rem'} 
-                          //         colorScheme='blue'
-                          //         width={'6rem'}
-                          //         height={'1.8rem'}>
-                          //   Follow
-                          // </Button>
                         )}
                         <Button 
                             colorScheme='blue' 
                             zIndex={1}
-                            height={'1.8rem'}>
-                            
+                            height={'3rem'}
+                            width={'11rem'}>
                         Send Message
                       </Button>
-        
                       </HStack>
                       </Flex>
-                      <Text marginLeft={'20rem'} fontSize='5sm' > 
-                        @{profile?.handle}sdfsdf     
-                      </Text>
                     </VStack>
+                    <Box marginLeft={'15rem'}>
+                      <HStack  marginTop={'1rem'}>
+                        <Text  fontSize='3xl' as='b' color={'black'} zIndex={1} > 
+                            {profile?.name} |  
+                        </Text>
+                        <Text fontSize='xl' marginTop={'-10rem'} color={'black'} zIndex={1} margin={'1rem'}> 
+                            @{profile?.handle}     
+                        </Text>
+                      </HStack>
+                        <Text fontSize='md' color={'black'} zIndex={1}> 
+                            Developer. Software Engineer.    
+                        </Text>
+                        <HStack marginTop={'0.5rem'}>
+                          <Button backgroundColor={'blue.200'} height={'2rem'} color={'black.200'}>
+                              UX Research
+                          </Button>
+                          <Button backgroundColor={'blue.200'} height={'2rem'}>
+                              CX Strategy
+                          </Button>
+                          <Button backgroundColor={'blue.200'} height={'2rem'}>
+                              Project Management
+                          </Button>
+                        </HStack>
+                    </Box>
                   </div>
         </div>
                 
