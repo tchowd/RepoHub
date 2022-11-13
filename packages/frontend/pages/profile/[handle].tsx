@@ -27,10 +27,13 @@ import { LENS_PROTOCOL_PROFILES_ABI } from "../../const/abis";
 import { signedTypeData, splitSignature } from "../../util/ethers.service";
 import styles from "../../styles/Profile.module.css";
 import doesFollowUser from "../../graphql/query/doesFollowUser";
-import {Box, Button, Center, Container, Flex, HStack, Image, Spacer, Text, VStack } from '@chakra-ui/react'
+import {Box, Button, Center, Container, Divider, Flex, HStack, Image, Spacer, Tab, TabList, TabPanel, TabPanels, Tabs, Text, VStack } from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
-import Auth from "../Auth";
+import Auth from "../auth";
+import { useState, useEffect } from 'react';
+import ExploreProfiles from "../explore/ExploreProfiles";
+import PastProjects from "./PastProjects";
 
 
 
@@ -129,23 +132,21 @@ function ProfilePage() {
 
   return (
     <div>
-      <HStack marginLeft={'6rem'} marginTop={'-35rem'}>
-        <VStack>
-        <Container maxW={'6xl'}>
+      <HStack marginLeft={'10rem'} >
+        <VStack position={'relative'}>
+        <Container maxW={'6xl'} >
       <div
         style={{
-          width: '60rem',
+          width: '55rem',
           position: 'relative',
           height: '22rem',
-          backgroundColor: 'purple',
+          backgroundColor: 'white',
           overflow: '-1',
-          border:'0.4rem solid red',
+          border:'0.4rem solid',
           zIndex: '-1',
           borderRadius: '1rem'
         }}
-        >
-          
-          
+        > 
            <Box
                 position={'relative'}
                 height={'10rem'}
@@ -154,11 +155,11 @@ function ProfilePage() {
                 zIndex={-1}
                 borderRadius={'0.5rem'}
                 />
-                <MediaRenderer
+                {/* <MediaRenderer
                     style={{
                       borderRadius: "50%",
-                      width: "170px",
-                      height: "170px",
+                      width: "150px",
+                      height: "150px",
                       marginTop: '-5rem',
                       marginLeft:'3rem',
                       marginBottom: '-4rem',
@@ -168,50 +169,64 @@ function ProfilePage() {
                     }}
                     src={profile.picture.original.url || ""}
                     alt='Dan Abramov'
-                    /> 
+                    />  */}
                 <div style={{ marginTop: '-6rem'}}>
                     <VStack >
                       <Flex >
-                      <Text 
-                            // marginRight={'10rem'}
-
-                            marginLeft={'14rem'}
-                            fontSize='5xl' 
-                            as='b'
-                            > 
-                        {profile?.name}
-                        
-                      </Text>
+                      <MediaRenderer
+                          style={{
+                            borderRadius: "50%",
+                            width: "150px",
+                            height: "150px",
+                            // marginTop: '-5rem',
+                            // marginLeft:'rem',
+                            marginBottom: '-4rem',
+                            overflow:'none',
+                            // zIndex: '1',
+                            border: '0.4rem solid white'
+                          }}
+                          src={profile.picture.original.url || ""}
+                          alt='Dan Abramov'
+                          /> 
                       <Spacer/>
                       <HStack 
-                            marginLeft={'16rem'}>
-                      <Button 
+                            marginLeft={'20rem'}
+                            marginTop={'2rem'}
+                            marginRight={''}>
+                      {/* <Button 
+                            colorScheme='blue' 
+                            zIndex={1}
+                            height={'1.8rem'}>
+                            
+                        Send Message
+                      </Button> */}
+                      {doesFollow ? (
+                          <b className={styles.following}>Following</b>
+                        ) : (
+                          <Web3Button
+                            contractAddress={LENS_HUB_CONTRACT_ADDRESS}
+                            contractAbi={LENS_PROTOCOL_PROFILES_ABI}
+                            colorMode="dark"
+                            accentColor="#f213a4"
+                            action={() => follow()}
+                            className={styles.followButton}
+                          >
+                            Follow
+                          </Web3Button>
+                          // <Button marginRight={'0rem'} 
+                          //         colorScheme='blue'
+                          //         width={'6rem'}
+                          //         height={'1.8rem'}>
+                          //   Follow
+                          // </Button>
+                        )}
+                        <Button 
                             colorScheme='blue' 
                             zIndex={1}
                             height={'1.8rem'}>
                             
                         Send Message
                       </Button>
-                      {doesFollow ? (
-                          <b className={styles.following}>Following</b>
-                        ) : (
-                          // <Web3Button
-                          //   contractAddress={LENS_HUB_CONTRACT_ADDRESS}
-                          //   contractAbi={LENS_PROTOCOL_PROFILES_ABI}
-                          //   colorMode="dark"
-                          //   accentColor="#f213a4"
-                          //   action={() => follow()}
-                          //   className={styles.followButton}
-                          // >
-                          //   Follow
-                          // </Web3Button>
-                          <Button marginRight={'0rem'} 
-                                  colorScheme='blue'
-                                  width={'6rem'}
-                                  height={'1.8rem'}>
-                            Follow
-                          </Button>
-                        )}
         
                       </HStack>
                       </Flex>
@@ -225,18 +240,15 @@ function ProfilePage() {
         </Container>
           <Box 
             position={'relative'}
-            // height={'20rem'}
-            width={'60rem'}
+            width={'55rem'}
             borderRadius={'1rem'}
-            backgroundColor={'purple.100'}
+            backgroundColor={'white'}
             overflow={'hidden'}
             zIndex={-1}
-            border={'0.5rem solid white'}
-            // marginTop={'5rem'}
             padding={'1rem'}
           >
-            <Text fontSize={'2xl'}> About {profile.name}</Text>
-            <Text> {profile.bio}</Text>
+            <Text fontSize={'1xl'} as='b' color={'black'}> About {profile.name}</Text>
+            <Text fontSize={'sm'} color={'black'}> {profile.bio}</Text>
           </Box>
           <HStack>
               
@@ -244,57 +256,40 @@ function ProfilePage() {
                 position={'relative'}
                 width={'18rem'}
                 borderRadius={'1rem'}
-                backgroundColor={'purple.100'}
+                backgroundColor={'white'}
                 overflow={'hidden'}
-                zIndex={-1}
-                border={'0.4rem solid white'}
-                // marginTop={'5rem'}
-                padding={'0.5rem'}
-                >
-                <Text> About {profile.name}</Text>
-                <Text> {profile.bio}</Text>
-              </Box>
-              <Box 
-                position={'relative'}
-                width={'18rem'}
-                borderRadius={'1rem'}
-                backgroundColor={'purple.100'}
-                overflow={'hidden'}
-                zIndex={-1}
-                border={'0.4rem solid white'}
-                // marginTop={'5rem'}
-                padding={'0.5rem'}
-                >
-                <Text> About {profile.name}</Text>
-                <Text> {profile.bio}</Text>
-              </Box>
-              <Box 
-                position={'relative'}
-                width={'18rem'}
-                borderRadius={'1rem'}
-                backgroundColor={'purple.100'}
-                overflow={'hidden'}
-                zIndex={-1}
-                border={'0.4rem solid white'}
-                // marginTop={'5rem'}
-                padding={'0.5rem'}
-                >
-                <Text> About {profile.name}</Text>
-                <Text> {profile.bio}</Text>
-              </Box>
+                height={'15rem'}
 
-              
+                zIndex={-1}
+                padding={'0.6rem'}
+                >
+                  <Text fontSize={'1xl'} as='b' color={'black'} > Contact {profile.name}</Text>
+                  {/* <Text fontSize={'sm'} color={'black'}> {profile.bio}</Text> */}
+              </Box>
+              <Box 
+                position={'relative'}
+                width={'37rem'}
+                height={'15rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'white'}
+                overflow={'hidden'}
+                zIndex={-1}
+                padding={'0.6rem'}
+                >
+                  <Text fontSize={'1xl'} as='b' color={'black'} > Similar Developers</Text>
+              </Box>
             </HStack>
           </VStack>
-            <VStack className='overflowTest'>
+
+            <VStack className='overflowTest'  maxH={'750px'} overflow={'scroll'} marginLeft={'4rem'}>
                 {loadingPublications ? (
                   <p>Loading publications...</p>
                 ) : (
-                  <div className='overflowTest' >
+                  <Box className='overflowTest'  >
                     {publications?.map((publication: Publication) => (
                       <PublicationCard publication={publication} key={publication.id} />
                     ))}
-                  </div>
+                  </Box>
                 )}
               {/* <Box 
                 position={'relative'}
@@ -390,6 +385,29 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+// export default function useWindowDimensions() {
+//   const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+//   useEffect(() => {
+//     function handleResize() {
+//       setWindowDimensions(getWindowDimensions());
+//     }
+
+//     window.addEventListener('resize', handleResize);
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   return windowDimensions;
+// }
+
 
 
 const Profile: NextPage = () => {
@@ -398,9 +416,10 @@ const Profile: NextPage = () => {
 
   return isSignedIn ? (
     <>
-    
+      <Box overflow='scroll' maxH={'750px'}>
         <Sidebar />
-        <Box ml={{ base: 0, md: 70 }} p="4" overflow='scroll'>
+        
+        <Box  p="4" >
           <div className='overscroll-contain' >
         <Container  >
           <VStack>
@@ -409,6 +428,35 @@ const Profile: NextPage = () => {
         </Container>
         </div>
         </Box>
+
+
+        <Tabs variant=''>
+              <Container maxW="5xl" >
+              <Divider orientation='horizontal'zIndex={-1} marginTop={'2rem'} marginBottom={'2rem'} color={'white'}/>
+
+              <TabList>
+                <Tab _selected={{ color: '#F211A3' }}>
+                  <Text className='text-5xl' as='b'>
+                    Past Projects
+                  </Text>
+                </Tab>
+                <Tab _selected={{ color: '#F211A3' }}>
+                  <Text className='text-5xl' as='b'>
+                    Mirror
+                  </Text>
+                </Tab>
+              </TabList>
+              </Container>
+              <TabPanels>
+                <TabPanel>
+                  <PastProjects />
+                </TabPanel>
+                <TabPanel>
+                <PastProjects />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+            </Box>
     </>
   ) : (
     <Auth />

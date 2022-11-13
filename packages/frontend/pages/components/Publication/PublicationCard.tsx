@@ -1,4 +1,4 @@
-import { HStack, Box, Image, } from "@chakra-ui/react";
+import { HStack, Box, Image, Text } from "@chakra-ui/react";
 import { MediaRenderer } from "@thirdweb-dev/react";
 import Link from "next/link";
 import Publication from "../../../types/Publication";
@@ -13,7 +13,7 @@ export default function PublicationCard({ publication }: Props) {
 
       <>    
 
-       <div className={styles.container}>
+       <div>
       {/* <div className={styles.textContainer}>  */}
 
 
@@ -24,16 +24,18 @@ export default function PublicationCard({ publication }: Props) {
                   rounded={'2xl'}
                   borderWidth='0.2rem'
                   borderColor='gray.200'
+                  // border={'red'}
+                  backgroundColor={'white'}
                   overflow={'scroll'}
-                  width={'18rem'}
-                  marginRight={'5rem'}
-                  padding={'1rem'}
+                  padding={'0.4rem'}
+                  width={'15rem'}
                   marginTop={'1rem'}
                   _hover={{ boxShadow: 'lg' }}
                   className='overflowTest'
                 >
-                          <h2 className={styles.title}>{publication.metadata.name}</h2>
-              <p className={styles.content}>{publication.metadata.content}</p>
+                <Text fontSize={'l'} as='b' color={'black'}>{publication.metadata.name}</Text>
+                <Text fontSize={'sm'}  color={'black'}>{publication.metadata.content}</Text>
+
                 {publication.metadata.image && (
                   <MediaRenderer
                     src={publication.metadata.image || ""}

@@ -268,7 +268,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <Box
+            <Box zIndex={'1'}
                 className={`${
                     open ? 'w-60' : 'w-fit'
                 } hidden sm:block absolute h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}

@@ -15,7 +15,7 @@ import login from "@/util/login";
 import useLensUser from "@/util/useLensUser";
 import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths } from "next";
-import Auth from "../Auth";
+import Auth from "../auth";
 
 export default function ExploreProfiles() {
 

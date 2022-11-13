@@ -5,9 +5,10 @@ import { Box, Container, Tab, TabList, TabPanel, TabPanels,Text, Tabs, Divider }
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { ConnectWallet } from "@thirdweb-dev/react";
-import Auth from '../Auth'
+import Auth from '../auth'
 import ExploreProfiles from './ExploreProfiles'
 import useLensUser from '@/util/useLensUser'
+import ExplorePartners from './ExplorePartners'
 
 const Explore: NextPage = () => {
 
@@ -30,7 +31,7 @@ const Explore: NextPage = () => {
                 </Tab>
                 <Tab _selected={{ color: '#F211A3' }}>
                   <Text className='text-5xl' as='b'>
-                    Companies
+                    Partners
                   </Text>
                 </Tab>
               </TabList>
@@ -41,7 +42,7 @@ const Explore: NextPage = () => {
                   <ExploreProfiles />
                 </TabPanel>
                 <TabPanel>
-                  <p>two!</p>
+                  <ExplorePartners/>
                 </TabPanel>
               </TabPanels>
             </Tabs>
