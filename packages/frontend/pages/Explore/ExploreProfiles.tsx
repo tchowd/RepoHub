@@ -127,7 +127,8 @@ export default function ExploreProfiles() {
             <p>Loading...</p>
           ) : (
             data?.map((profile) => (
-              <div className={styles.profileContainer}>
+
+              <div className={styles.profileContainer}  key={profile.id}>
               <a
                 href={`/profile/${profile.handle}`}
                 key={profile.id}
@@ -174,34 +175,4 @@ export default function ExploreProfiles() {
   )
   ;
 }
-
-export const getStaticProps: GetStaticProps = async (context) => {
-  // Load data for the profile page on the server-side
-  const { handle } = context.params!;
-  const queryClient = new QueryClient();
-
-  // "Pre-fetch" the data for the profile page. Meaning when
-  // we use the useQuery it is already available in the cache
-  await queryClient.prefetchQuery(["profile"], () =>
-    getProfile(handle as string)
-  );
-
-  // Learn more here: https://tanstack.com/query/v4/docs/guides/ssr#using-hydration
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    // Returning an empty array here means we
-    // don't statically generate any paths at build time, which
-    // is probably not the most optimal thing we could do.
-    // You could change this behaviour to pre-render any profiles you want
-    paths: [],
-    fallback: "blocking",
-  };
-};
 
