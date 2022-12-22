@@ -1,8 +1,11 @@
 import React from 'react'
 import {
   Box,
+  Flex,
   HStack,
   Image,
+  Img,
+  Spacer,
   VStack,
 } from '@chakra-ui/react';
 import {
@@ -25,9 +28,15 @@ function Highlights() {
   return (
     <>
     <div style={{marginTop: '2rem'}}>
+      <Flex>
       <Text as='b' fontSize='4xl'>
         Good morning 👋
       </Text>
+      <Spacer />
+      <Box zIndex={1} width={'6rem'} marginRight={'-3rem'} marginTop={'-2rem'} >
+        <Img src='/static/pushicon.png' alt='pushicon' _hover={{boxShadow: 'sm', backgroundColor: 'purple.50', borderRadius: '10rem', cursor: 'pointer' }} />
+      </Box>
+      </Flex>
       <VStack style={{marginTop: '0rem', marginRight: '1rem'}}>
 
       <HStack style={{ marginTop: '2rem' }}>

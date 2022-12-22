@@ -114,19 +114,31 @@ export default function ExplorePartners() {
     <>
       <Container maxW={'6xl'}>
         <Flex marginBottom={'2rem'}>
-        <Select placeholder='All' zIndex={-1} width={'18rem'} style={{border: '0.1rem solid white'}}>
+        <Select placeholder='All' zIndex={-1} width={'18rem'} style={{border: '0.08rem solid black'}}>
           <option value='option1'>Option 1</option>
           <option value='option2'>Option 2</option>
           <option value='option3'>Option 3</option>
         </Select>
         <Spacer />
-        <Input placeholder='Search' width={'18rem'} style={{border: '0.1rem solid white'}}/>
+        <Input placeholder='Search' width={'18rem'} style={{border: '0.08rem solid black'}}/>
         </Flex>
         <Box className={styles.profileGrid} maxHeight={'45rem'}>
-          <div className={styles.profileContainer}>
-              <VStack>
+        <Box 
+                position={'relative'}
+                width={'15rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'white'}
+                overflow={'hidden'}
+                height={'19rem'}
+                bgGradient={[
+                  'linear(to-b, red.50, purple.100, purple.100, purple.50)',
+                ]}
+                zIndex={-1}
+                padding={'0.6rem'}
+                >
+              <VStack marginTop={'1.2rem'}>
                 <Image
-                src='packages/frontend/public/images/claim.jpg'
+                src='/static/polygon.png'
                 style={{
                   borderRadius: "50%",
                   width: "114px",
@@ -138,11 +150,24 @@ export default function ExplorePartners() {
                 <Text className='text-2sm'>@polygon</Text>
                 <Button backgroundColor={'#f213a4'}> Follow </Button>
                 </VStack>
-            </div>
-            <div className={styles.profileContainer}>
-              <VStack>
+            </Box>
+            <Box 
+                position={'relative'}
+                width={'15rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'white'}
+                overflow={'hidden'}
+                marginLeft={'1rem'}
+                height={'19rem'}
+                bgGradient={[
+                  'linear(to-b, red.50, purple.100, purple.100, purple.50)',
+                ]}
+                zIndex={-1}
+                padding={'0.6rem'}
+                >
+              <VStack marginTop={'1.2rem'}>
                 <Image
-                src='packages/frontend/public/images/claim.jpg'
+                src='/static/lens.png'
                 style={{
                   borderRadius: "50%",
                   width: "114px",
@@ -150,15 +175,57 @@ export default function ExplorePartners() {
                   objectFit: "cover",
                   marginBottom: '0.5rem'
                 }}     />        
-                <Text className='mt-1' fontSize={'xl'} as='b'>The Graph</Text>
+                <Text className='mt-1' fontSize={'xl'} as='b'>Lens Protocol</Text>
                 <Text className='text-2sm'>@thegraph</Text>
                 <Button backgroundColor={'#f213a4'}> Follow </Button>
                 </VStack>
-            </div>
-            <div className={styles.profileContainer}>
-              <VStack>
+            </Box>
+            <Box 
+                position={'relative'}
+                width={'15rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'white'}
+                overflow={'hidden'}
+                height={'19rem'}
+                bgGradient={[
+                  'linear(to-b, red.50, purple.100, purple.100, purple.50)',
+                ]}
+                zIndex={-1}
+                marginLeft={'1rem'}
+                padding={'0.6rem'}
+                >
+              <VStack marginTop={'1.2rem'}>
                 <Image
-                src='packages/frontend/public/images/claim.jpg'
+                src='/static/optimism.png'
+                style={{
+                  borderRadius: "50%",
+                  width: "114px",
+                  height: "114px",
+                  objectFit: "cover",
+                  marginBottom: '0.5rem'
+                }}     />        
+                <Text className='mt-1' fontSize={'xl'} as='b'>Optimism</Text>
+                <Text className='text-2sm'>@optimism</Text>
+                <Button backgroundColor={'#f213a4'}> Follow </Button>
+                </VStack>
+            </Box>
+            <Box 
+                position={'relative'}
+                width={'15rem'}
+                borderRadius={'1rem'}
+                backgroundColor={'white'}
+                overflow={'hidden'}
+                height={'19rem'}
+                bgGradient={[
+                  'linear(to-b, red.50, purple.100, purple.100, purple.50)',
+                ]}
+                zIndex={-1}
+                padding={'0.6rem'}
+                marginLeft={'1rem'}
+                >              
+                <VStack marginTop={'1.2rem'}>
+                <Image
+                src='/static/4.png'
                 style={{
                   borderRadius: "50%",
                   width: "114px",
@@ -167,26 +234,10 @@ export default function ExplorePartners() {
                   marginBottom: '0.5rem'
                 }}     />        
                 <Text className='mt-1' fontSize={'xl'} as='b'>Push Protocol</Text>
-                <Text className='text-2sm'>@Push</Text>
+                <Text className='text-2sm'>@push</Text>
                 <Button backgroundColor={'#f213a4'}> Follow </Button>
                 </VStack>
-            </div>
-            <div className={styles.profileContainer}>
-              <VStack>
-                <Image
-                src='packages/frontend/public/images/claim.jpg'
-                style={{
-                  borderRadius: "50%",
-                  width: "114px",
-                  height: "114px",
-                  objectFit: "cover",
-                  marginBottom: '0.5rem'
-                }}     />        
-                <Text className='mt-1' fontSize={'xl'} as='b'>Ankr</Text>
-                <Text className='text-2sm'>@Ankr</Text>
-                <Button backgroundColor={'#f213a4'}> Follow </Button>
-                </VStack>
-            </div>
+            </Box>
 
         
         </Box>

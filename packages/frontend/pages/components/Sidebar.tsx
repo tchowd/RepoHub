@@ -249,9 +249,9 @@ import React, { useState } from 'react'
 // import { Link, useLocation } from 'react-router-dom'
 import { Box, Img, Link } from '@chakra-ui/react'
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import { AiFillPieChart } from 'react-icons/ai'
-import { SiFuturelearn } from 'react-icons/si'
-import { SiOpenaccess } from 'react-icons/si'
+import { SlHome } from 'react-icons/sl'
+import { BsSearch } from 'react-icons/bs'
+import { FiSettings } from 'react-icons/fi'
 import { CgProfile } from 'react-icons/cg'
 // import Logo from '../assets/images/logo.svg'
 
@@ -260,10 +260,10 @@ const Sidebar = () => {
     // const location = useLocation()
 
     const Menus = [
-        { title: 'Dashboard', path: '/dashboard', src: <AiFillPieChart /> },
-        { title: 'Explore', path: '/explore', src: <SiFuturelearn /> },
+        { title: 'Dashboard', path: '/dashboard', src: <SlHome /> },
+        { title: 'Explore', path: '/explore', src: <BsSearch /> },
         { title: 'Profile', path: '/profile', src: <CgProfile /> },
-        { title: 'Settings', path: '/Settings', src: <SiOpenaccess />, gap: 'true' },
+        { title: 'Settings', path: '/Settings', src: <FiSettings />, gap: 'true' },
     ]
 
     return (
@@ -284,17 +284,17 @@ const Sidebar = () => {
                 />
                 <Link href='/'>
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
+                        
                         {/* <img src={Logo} alt='' className='pl-2' /> */}
-                        {open && (
-                            // <Box marginTop={'1rem'} className='text-xl font-medium whitespace-nowrap dark:text-black'>
-                            //     Claim
-                            // </Box>
-                            <Img src='/images/claim.png' alt='claim' width={'100px'} marginLeft={'2rem'} />
-                        )}
+                        
+                         
+                            <Img src='/images/claim.png' alt='claim' width={'100px'}  />
+                        
                     </div>
                 </Link>
 
                 <ul className='pt-6'>
+                    
                     {Menus.map((menu, index) => (
                         <Link href={menu.path} key={index}>
                             <li

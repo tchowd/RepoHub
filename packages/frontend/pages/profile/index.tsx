@@ -27,7 +27,7 @@ import { LENS_PROTOCOL_PROFILES_ABI } from "../../const/abis";
 import { signedTypeData, splitSignature } from "../../util/ethers.service";
 import styles from "../../styles/Profile.module.css";
 import doesFollowUser from "../../graphql/query/doesFollowUser";
-import {Box, Button, Center, Container, Divider, Flex, HStack, Image, Spacer, Tab, TabList, TabPanel, TabPanels, Tabs, Text, VStack } from '@chakra-ui/react'
+import {Box, Button, Center, Container, Divider, Flex, HStack, Image, Img, Spacer, Tab, TabList, TabPanel, TabPanels, Tabs, Text, VStack } from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useAccount } from "wagmi";
 import Auth from "../auth";
@@ -150,6 +150,8 @@ function ProfilePage() {
         bgGradient={[
           'linear(to-b, red.50, purple.50, purple.50, purple.50)',
         ]}
+        marginBottom={'1rem'}
+
         > 
            <Box
                 position={'relative'}
@@ -162,7 +164,7 @@ function ProfilePage() {
                 <div style={{ marginTop: '-6rem'}}>
                     <VStack >
                       <Flex >
-                      {/* <MediaRenderer
+                      <Img
                           style={{
                             borderRadius: "50%",
                             width: "180px",
@@ -174,9 +176,10 @@ function ProfilePage() {
                             zIndex: '1',
                             border: '0.4rem solid white'
                           }}
-                        //   src={profile.picture.original.url || ""}
+                          src={'/static/hans.jpeg'}
                           alt='Dan Abramov'
-                          />  */}
+                          /> 
+
                       <Spacer/>
                       <HStack 
                             marginLeft={'17rem'}
@@ -205,14 +208,14 @@ function ProfilePage() {
                       </Flex>
                     </VStack>
                     <Box marginLeft={'15rem'}>
-                      <HStack  marginTop={'1rem'}>
+                      <HStack  marginTop={'-3rem'}>
                         <Text  fontSize='3xl' as='b' color={'black'} zIndex={1} marginTop={'3rem'} > 
-                            Johnny Timio  
+                            Hans Timio  
                         </Text>
                         
                       </HStack>
                         <Text fontSize='md' color={'black'} zIndex={1}> 
-                            Developer. Software Engineer.    
+                            Researcher. Technical Writer.    
                         </Text>
                         <HStack marginTop={'0.5rem'}>
                           <Button backgroundColor={'blue.200'} height={'2rem'} color={'black.200'}>
@@ -237,16 +240,18 @@ function ProfilePage() {
                 borderRadius={'1rem'}
                 backgroundColor={'white'}
                 overflow={'hidden'}
-                height={'15rem'}
-                marginTop={'10rem'}
+                height={'12rem'}
+                marginTop={'1rem'}
                 zIndex={-1}
                 padding={'0.6rem'}
                 bgGradient={[
                   'linear(to-b, red.50, purple.50, purple.100, purple.50)',
                 ]}
                 >
-            <Text fontSize={'1xl'} as='b' color={'black'}> About name</Text>
-            <Text fontSize={'sm'} color={'black'}> Bio</Text>
+                  <div style={{margin: '1rem'}}>
+            <Text fontSize={'2xl'} as='b' color={'black'}> About </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> Hipster-friendly social media trailblazer. Zombie fanatic. Subtly charming bacon advocate. About the time we can make the ends meet, somebody moves the ends. I never give money to those Salvation Army people because I know they're just gonna spend it on more bells. </Text>
+                </div>
           </Box>
           <HStack>
               
@@ -263,8 +268,13 @@ function ProfilePage() {
                 zIndex={-1}
                 padding={'0.6rem'}
                 >
-                  <Text fontSize={'1xl'} as='b' color={'black'} > Contact </Text>
-                  {/* <Text fontSize={'sm'} color={'black'}> {profile.bio}</Text> */}
+                  <div style={{margin: '1rem'}}>
+            <Text fontSize={'2xl'} as='b' color={'black'}> Contact </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> proventusmedia.com </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> @suttles </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> autumn1972@yahoo.com </Text>
+
+                </div>
               </Box>
               <Box 
                 position={'relative'}
@@ -279,7 +289,15 @@ function ProfilePage() {
                   'linear(to-b, red.50, purple.50, purple.100, purple.50)',
                 ]}
                 >
-                  <Text fontSize={'1xl'} as='b' color={'black'} > Similar Developers</Text>
+                  <div style={{margin: '1rem'}}>
+                  <Text fontSize={'2xl'} as='b' color={'black'} > Similar Profiles</Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> Dorothy J Kerr | @conlon </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> Lynne H Buckles | @sotgasotga </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> Mario A Gonzalez | @monopetalous </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> Michael M Mershon | @marguerite1992 </Text>
+            <Text fontSize={'md'} color={'black'} marginTop={'0.5rem'}> Jimmy P Carolina | @jpcarolina </Text>
+
+                </div>
               </Box>
             </HStack>
           </VStack>

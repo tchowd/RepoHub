@@ -113,14 +113,14 @@ export default function ExploreProfiles() {
     
     <>
       <Container maxW={'7xl'}>
-        <Flex marginBottom={'2rem'}>
-        <Select placeholder='All' zIndex={-1} width={'18rem'} style={{border: '0.1rem solid white'}}>
+      <Flex marginBottom={'2rem'}>
+        <Select placeholder='All' zIndex={-1} width={'18rem'} style={{border: '0.08rem solid black'}} marginLeft={'2.8rem'}>
           <option value='option1'>Option 1</option>
           <option value='option2'>Option 2</option>
           <option value='option3'>Option 3</option>
         </Select>
         <Spacer />
-        <Input placeholder='Search' width={'18rem'} style={{border: '0.1rem solid white'}}/>
+        <Input placeholder='Search' width={'18rem'} style={{border: '0.08rem solid black'}} marginRight={'2.8rem'}/>
         </Flex>
         <Box className={styles.profileGrid} maxHeight={'45rem'}>
           {isLoading ? (
@@ -130,7 +130,7 @@ export default function ExploreProfiles() {
 
               <Box
               bgGradient={[
-                'linear(to-b, purple.100, purple.100)',
+                'linear(to-b, red.50, purple.100, purple.100, purple.50)',
               ]}
               style={{borderRadius: '10px', backgroundColor: 'white', padding: '26px', margin: '15px'}}
               key={profile.id}
