@@ -10,10 +10,10 @@ const Auth: NextPage = () => {
     return (
     <>
         <Navbar />
-            <Box>
+            <Box >
                 <AuthMiddle />
             </Box>
-        <Footer />
+        {/* <Footer /> */}
     </>
   )
 }

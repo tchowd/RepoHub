@@ -247,7 +247,7 @@
 
 import React, { useState } from 'react'
 // import { Link, useLocation } from 'react-router-dom'
-import { Box, Link } from '@chakra-ui/react'
+import { Box, Img, Link } from '@chakra-ui/react'
 import { BsArrowLeftCircle } from 'react-icons/bs'
 import { AiFillPieChart } from 'react-icons/ai'
 import { SiFuturelearn } from 'react-icons/si'
@@ -286,9 +286,10 @@ const Sidebar = () => {
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
                         {/* <img src={Logo} alt='' className='pl-2' /> */}
                         {open && (
-                            <Box marginTop={'1rem'} className='text-xl font-medium whitespace-nowrap dark:text-black'>
-                                Claim
-                            </Box>
+                            // <Box marginTop={'1rem'} className='text-xl font-medium whitespace-nowrap dark:text-black'>
+                            //     Claim
+                            // </Box>
+                            <Img src='/images/claim.png' alt='claim' width={'100px'} marginLeft={'2rem'} />
                         )}
                     </div>
                 </Link>

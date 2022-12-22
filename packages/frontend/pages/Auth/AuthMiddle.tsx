@@ -73,16 +73,21 @@ import { FaMediumM } from 'react-icons/fa';
    
     return (
       <Flex
-        minH={'80vh'}
+        minH={'100vh'}
         align={'center'}
         justify={'center'}
-        bg={useColorModeValue('gray.50', 'gray.800')}>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        // bg={useColorModeValue('gray.50', 'gray.800')}
+        bgGradient='linear(to-r, gray.300, purple.50, purple.100, purple.50, gray.300)'
+
+        >
+        <Stack spacing={10} mx={'auto'} maxW={'6xl'} py={12} px={6}>
           <Stack align={'center'}>
-            <Heading fontSize={'4xl'} textAlign={'center'}>
+            <Heading fontSize={'6xl'} textAlign={'center'} 
+            fontWeight='extrabold'>
               Get Started with Claim
             </Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
+
+            <Text fontSize={'xl'} color={'gray.600'}>
               Kickstart your journey by signing in with your wallet.
             </Text>
           </Stack>
@@ -160,7 +165,11 @@ import { FaMediumM } from 'react-icons/fa';
           <>
 
           <p>
-              No Lens profile. <br></br>
+              {/* No Lens profile. <br></br> */}
+              <Confetti
+            width={width}
+            height={height}
+          />
               <CompleteAccount />
             </p>
           </>
@@ -182,7 +191,7 @@ import { FaMediumM } from 'react-icons/fa';
   
     return (
       <>
-        <Button onClick={onOpen}>Trigger modal</Button>
+        <Button onClick={onOpen} bgGradient='linear(to-r, red.100, yellow.400, pink.200)'>Claim your Account</Button>
                   
   
         <Modal onClose={onClose} isOpen={isOpen} isCentered >
@@ -245,9 +254,8 @@ import { FaMediumM } from 'react-icons/fa';
             </Container>
             <Link href='/dashboard'>
               <VStack>
-              <Button margin="1rem" marginRight={'2rem'}   bgGradient='linear(to-r, red.100, yellow.400, pink.200)'> 
-                Claim your profile
-              </Button>
+              <Button onClick={onOpen} bgGradient='linear(to-r, red.100, yellow.400, pink.200)' marginTop={'1rem'} marginBottom={'2rem'} textDecoration={'none'}
+              marginRight={'1rem'}>Enter Claim</Button>
               </VStack>
             </Link>
             </ModalBody>

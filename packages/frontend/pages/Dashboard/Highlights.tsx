@@ -25,7 +25,7 @@ function Highlights() {
   return (
     <>
     <div style={{marginTop: '2rem'}}>
-      <Text as='b' fontSize='3xl'>
+      <Text as='b' fontSize='4xl'>
         Good morning 👋
       </Text>
       <VStack style={{marginTop: '0rem', marginRight: '1rem'}}>
@@ -47,7 +47,7 @@ function Highlights() {
                 rounded='90px'
                 width="30rem">
                 <VStack marginTop='1rem'>
-                    <Text>Total Amount Available to be Earned ($USDC)</Text>
+                    <Text>Total Amount Claimable ($USDC)</Text>
                     <Text as='b' fontSize='5xl'>$122,500</Text>
                 </VStack>
               </Box>
@@ -97,10 +97,10 @@ function Highlights() {
               src='/static/13.jpg'
               alt="some good alt text"
               objectFit="contain"
-              width={'40rem'}
-              height={'35rem'}
+              width={'45rem'}
+              height={'38rem'}
               marginTop={'-12rem'}
-              marginLeft={'2rem'}
+              marginLeft={'1rem'}
               overflow="hidden"
               // style={{ borderRadius: '0.8rem' }}
             />
