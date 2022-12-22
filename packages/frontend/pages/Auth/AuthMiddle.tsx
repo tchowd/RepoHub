@@ -41,6 +41,8 @@ import {
 import { useAccount } from 'wagmi';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
+import { SiSubstack, SiHashnode, SiGithub } from 'react-icons/si';
+import { FaMediumM } from 'react-icons/fa';
 
 
 
@@ -54,7 +56,7 @@ import Confetti from 'react-confetti'
     const { isSignedIn, setIsSignedIn, loadingSignIn, profile, loadingProfile } =
         useLensUser();
     const { isConnected } = useAccount()
-    const { width, height } = useWindowSize()
+     const { width, height } = useWindowSize()
 
 
     async function signIn() {
@@ -78,10 +80,10 @@ import Confetti from 'react-confetti'
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'} textAlign={'center'}>
-              Sign up
+              Get Started with Claim
             </Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool features ✌️
+              Kickstart your journey by signing in with your wallet.
             </Text>
           </Stack>
           <Center>
@@ -90,11 +92,6 @@ import Confetti from 'react-confetti'
            {/* if (isConnected)  (return <CompleteAccount/> : <ConnectButton />  ) */}
           </Center>
 
-        
-
-          <Text fontSize={'lg'} color={'gray.600'}>
-              Already have an account? Sign in here.
-            </Text>
           
         </Stack>
       </Flex>
@@ -106,6 +103,10 @@ import Confetti from 'react-confetti'
       if (isConnected) {
         return (
           <>
+          <Confetti
+            width={width}
+            height={height}
+          />
           <CompleteAccount />
           </>
         )
@@ -139,7 +140,7 @@ import Confetti from 'react-confetti'
         // Not signed in
         if (!isSignedIn) {
           return (
-            <Button onClick={signIn}>
+            <Button onClick={signIn} bgGradient='linear(to-r, red.100, yellow.400, pink.200)' width={'10rem'}>
               {isWrongNetwork ? "Switch Network" : "Sign In with Lens"}
             </Button>
           );
@@ -157,10 +158,7 @@ import Confetti from 'react-confetti'
           console.log(isSignedIn)
           return(
           <>
-          {/* <Confetti
-            width={width}
-            height={height}
-          /> */}
+
           <p>
               No Lens profile. <br></br>
               <CompleteAccount />
@@ -179,15 +177,21 @@ import Confetti from 'react-confetti'
   
   function CompleteAccount() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    // const { width, height } = useWindowSize()
+
   
     return (
       <>
         <Button onClick={onOpen}>Trigger modal</Button>
+                  
   
-        <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <Modal onClose={onClose} isOpen={isOpen} isCentered >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Welcome to Claim!</ModalHeader>
+            <VStack>
+            <ModalHeader>
+            <Text fontSize={'2rem'} marginTop={'2rem'} marginBottom={'-2rem'}>Welcome to Claim!</Text>  
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
               <Text> 
@@ -199,19 +203,21 @@ import Confetti from 'react-confetti'
               bg={'orange.400'}
               boxShadow={'lg'}
               margin={'1rem'}
+              marginLeft={'3.5rem'}
               width={'15rem'}
               p={8}>
-              Connect to Substack
+              <SiSubstack /> Connect to Substack
             </Button>
 
             <Button
               rounded={'lg'}
-              bg={'grey.400'}
+              bg={'gray.300'}
               boxShadow={'lg'}
               margin={'1rem'}
               width={'15rem'}
+              marginLeft={'3.5rem'}
               p={8}>
-              Connect to Medium
+              <FaMediumM />Connect to Medium
             </Button>
 
             <Button
@@ -220,27 +226,32 @@ import Confetti from 'react-confetti'
               boxShadow={'lg'}
               margin={'1rem'}
               width={'15rem'}
+              marginLeft={'3.5rem'}
               p={8}>
-              Connect to Hashnode
+              <SiHashnode /> Connect to Hashnode
             </Button>
 
             <Button
               rounded={'lg'}
-              bg={'black.400'}
+              bg={'gray.100'}
               boxShadow={'lg'}
               margin={'1rem'}
               width={'15rem'}
+              marginLeft={'3.5rem'}
               p={8}>
-              Connect to Github
+              <SiGithub />
+              <Text>Connect to Github</Text>  
             </Button>
             </Container>
             <Link href='/dashboard'>
-              <Button margin="2rem"> 
-                  Claim your profile
+              <VStack>
+              <Button margin="1rem" marginRight={'2rem'}   bgGradient='linear(to-r, red.100, yellow.400, pink.200)'> 
+                Claim your profile
               </Button>
+              </VStack>
             </Link>
             </ModalBody>
-            
+            </VStack>
             
           </ModalContent>
         </Modal>

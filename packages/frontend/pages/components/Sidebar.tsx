@@ -271,7 +271,10 @@ const Sidebar = () => {
             <Box zIndex={'1'}
                 className={`${
                     open ? 'w-50' : 'w-fit'
-                } hidden sm:block absolute h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
+                } hidden sm:block absolute h-screen duration-300 bg-white-100 border-r border-white-200 light:border-white-600 p-5 light:bg-slate-800`}
+                bgGradient={[
+                    'linear(to-b, purple.300, orange.100, purple.300)',
+                  ]}
             >
                 <BsArrowLeftCircle style={{zIndex: '1'}}
                     className={`${
@@ -283,7 +286,7 @@ const Sidebar = () => {
                     <div className={`flex ${open && 'gap-x-4'} items-center`}>
                         {/* <img src={Logo} alt='' className='pl-2' /> */}
                         {open && (
-                            <Box marginTop={'1rem'} className='text-xl font-medium whitespace-nowrap dark:text-white'>
+                            <Box marginTop={'1rem'} className='text-xl font-medium whitespace-nowrap dark:text-black'>
                                 Claim
                             </Box>
                         )}
@@ -294,14 +297,14 @@ const Sidebar = () => {
                     {Menus.map((menu, index) => (
                         <Link href={menu.path} key={index}>
                             <li
-                                className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700
+                                className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer light:text-black hover:bg-white-200 dark:hover:bg-white
                         `}
                             >
                                 <Box margin={'0.5rem'} className='text-2xl'>{menu.src}</Box>
                                 <span
                                     className={`${
                                         !open && 'hidden'
-                                    } origin-left duration-300 hover:block`}
+                                    } origin-left duration-300 hover:block `}
                                 >
                                     {menu.title}
                                 </span>

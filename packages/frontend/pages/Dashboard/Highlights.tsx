@@ -24,9 +24,12 @@ function Highlights() {
 
   return (
     <>
+    <div style={{marginTop: '2rem'}}>
       <Text as='b' fontSize='3xl'>
-        Good morning | {address} 
+        Good morning 👋
       </Text>
+      <VStack style={{marginTop: '0rem', marginRight: '1rem'}}>
+
       <HStack style={{ marginTop: '2rem' }}>
         <VStack>
           <Box
@@ -87,7 +90,7 @@ function Highlights() {
               overflow="hidden"
               height="17rem"
               // rounded='90px'
-              width="70rem"
+              width="30rem"
               >
                 <Image
               // borderRadius="lg"
@@ -108,6 +111,8 @@ function Highlights() {
 
 
       </HStack>
+      </VStack>
+      </div>
       </>
   ) 
 }

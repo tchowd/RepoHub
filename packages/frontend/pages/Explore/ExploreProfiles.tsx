@@ -112,7 +112,7 @@ export default function ExploreProfiles() {
   return isSignedIn ? (
     
     <>
-      <Container maxW={'6xl'}>
+      <Container maxW={'7xl'}>
         <Flex marginBottom={'2rem'}>
         <Select placeholder='All' zIndex={-1} width={'18rem'} style={{border: '0.1rem solid white'}}>
           <option value='option1'>Option 1</option>
@@ -128,7 +128,13 @@ export default function ExploreProfiles() {
           ) : (
             data?.map((profile) => (
 
-              <div className={styles.profileContainer}  key={profile.id}>
+              <Box
+              bgGradient={[
+                'linear(to-b, purple.100, purple.100)',
+              ]}
+              style={{borderRadius: '10px', backgroundColor: 'white', padding: '26px', margin: '15px'}}
+              key={profile.id}
+              _hover={{borderRadius: '200rem'}}>
               <a
                 href={`/profile/${profile.handle}`}
                 key={profile.id}
@@ -162,7 +168,7 @@ export default function ExploreProfiles() {
                       Follow
                     </Web3Button>
                   )}
-              </div>
+              </Box>
             ))
           )}
 

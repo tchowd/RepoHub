@@ -18,7 +18,7 @@ function Projects() {
 
   return (
     <>
-    <div style={{marginTop: '2rem'}}>
+    <div style={{marginTop: '2rem', marginLeft: '-6rem'}}>
      <Text as='b' fontSize='3xl' >Partners in our Community</Text>
 
       <HStack style={{ marginTop: '1rem' }}>

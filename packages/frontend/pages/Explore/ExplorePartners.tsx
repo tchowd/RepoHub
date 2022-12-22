@@ -105,6 +105,7 @@ export default function ExplorePartners() {
   //     console.error(error);
   //   }
   // }
+  
 
 
 

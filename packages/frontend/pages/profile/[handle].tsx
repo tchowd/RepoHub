@@ -135,17 +135,22 @@ function ProfilePage() {
       <HStack marginLeft={'10rem'} >
         <VStack position={'relative'}>
         <Container maxW={'6xl'} >
-      <div
+      <Box
         style={{
           width: '55rem',
           position: 'relative',
           height: '22rem',
           backgroundColor: 'white',
           overflow: '-1',
-          border:'0.4rem solid',
+          // border:'0.4rem solid',
           // zIndex: '-1',
           borderRadius: '1rem'
+          
         }}
+        bgGradient={[
+          'linear(to-b, red.50, purple.50, purple.50, purple.50)',
+        ]}
+
         > 
            <Box
                 position={'relative'}
@@ -154,6 +159,7 @@ function ProfilePage() {
                 overflow={'hidden'}
                 zIndex={1}
                 borderRadius={'0.5rem'}
+                
                 />
                 <div style={{ marginTop: '-6rem'}}>
                     <VStack >
@@ -228,7 +234,7 @@ function ProfilePage() {
                         </HStack>
                     </Box>
                   </div>
-        </div>
+        </Box>
                 
         </Container>
           <Box 
@@ -239,6 +245,9 @@ function ProfilePage() {
             overflow={'hidden'}
             zIndex={-1}
             padding={'1rem'}
+            bgGradient={[
+              'linear(to-b, red.50, purple.50, purple.100, purple.50)',
+            ]}
           >
             <Text fontSize={'1xl'} as='b' color={'black'}> About {profile.name}</Text>
             <Text fontSize={'sm'} color={'black'}> {profile.bio}</Text>
@@ -255,8 +264,11 @@ function ProfilePage() {
 
                 zIndex={-1}
                 padding={'0.6rem'}
+                bgGradient={[
+                  'linear(to-b, red.50, purple.50, purple.100, purple.50)',
+                ]}
                 >
-                  <Text fontSize={'1xl'} as='b' color={'black'} > Contact {profile.name}</Text>
+                  <Text fontSize={'1rem'} as='b' color={'black'} > Contact {profile.name}</Text>
                   {/* <Text fontSize={'sm'} color={'black'}> {profile.bio}</Text> */}
               </Box>
               <Box 
@@ -268,6 +280,9 @@ function ProfilePage() {
                 overflow={'hidden'}
                 zIndex={-1}
                 padding={'0.6rem'}
+                bgGradient={[
+                  'linear(to-b, red.50, purple.50, purple.100, purple.50)',
+                ]}
                 >
                   <Text fontSize={'1xl'} as='b' color={'black'} > Similar Developers</Text>
               </Box>
@@ -283,67 +298,9 @@ function ProfilePage() {
                       <PublicationCard publication={publication} key={publication.id} />
                     ))}
                   </Box>
-                )}
-              {/* <Box 
-                position={'relative'}
-                height={'5rem'}
-                width={'18rem'}
-                backgroundColor={'purple.100'}
-                overflow={'hidden'}
-                zIndex={-1}
-                borderRadius={'1rem'}
-                border={'0.4rem solid white'}
-                marginTop={'5rem'}
-                padding={'0.5rem'}
-                >
-                <Text> About {profile.name}</Text>
-                <Text> {profile.bio}</Text>
-              </Box>
-
-              <Box 
-                position={'relative'}
-                width={'18rem'}
-                borderRadius={'1rem'}
-                backgroundColor={'purple.100'}
-                overflow={'hidden'}
-                zIndex={-1}
-                border={'0.4rem solid white'}
-                marginTop={'5rem'}
-                padding={'0.5rem'}
-                >
-                About {profile.name}
-                <Text> {profile.bio}</Text>
-              </Box>
-
-              <Box 
-                position={'relative'}
-                height={'18rem'}
-                width={'18rem'}
-                borderRadius={'1rem'}
-                backgroundColor={'purple.100'}
-                overflow={'hidden'}
-                zIndex={-1}
-                border={'0.4rem solid white'}
-                marginTop={'5rem'}
-                padding={'0.5rem'}
-                >
-                About {profile.name}
-                <Text> {profile.bio}</Text>
-              </Box> */}
-
-              
+                )}      
             </VStack>
           </HStack>
-{/* 
-      {loadingPublications ? (
-        <p>Loading publications...</p>
-      ) : (
-        <div className='overscroll-auto' >
-          {publications?.map((publication: Publication) => (
-            <PublicationCard publication={publication} key={publication.id} />
-          ))}
-        </div>
-      )} */}
     </div>
   );
 }
@@ -409,7 +366,7 @@ const Profile: NextPage = () => {
 
   return isSignedIn ? (
     <>
-      <Box overflow='scroll' maxH={'750px'}>
+      <Box overflow='scroll' maxH={'800px'}>
         <Sidebar />
         
         <Box  p="4" >

@@ -14,16 +14,13 @@ export default function PublicationCard({ publication }: Props) {
       <>    
 
        <div>
-      {/* <div className={styles.textContainer}>  */}
 
-
-      {/* // </div> */}
 
                 <Box
                   position={'relative'}
                   rounded={'2xl'}
-                  borderWidth='0.2rem'
-                  borderColor='gray.200'
+                  // borderWidth='0.2rem'
+                  // borderColor='gray.200'
                   // border={'red'}
                   backgroundColor={'white'}
                   overflow={'scroll'}
@@ -32,8 +29,11 @@ export default function PublicationCard({ publication }: Props) {
                   marginTop={'1rem'}
                   _hover={{ boxShadow: 'lg' }}
                   className='overflowTest'
+                  bgGradient={[
+                    'linear(to-b, purple.50, purple.50)',
+                  ]} 
                 >
-                <Text fontSize={'l'} as='b' color={'black'}>{publication.metadata.name}</Text>
+                <Text fontSize={'sm'} as='b' color={'black'}>{publication.metadata.name}</Text>
                 <Text fontSize={'sm'}  color={'black'}>{publication.metadata.content}</Text>
 
                 {publication.metadata.image && (
